@@ -11,14 +11,14 @@ public class PlayerController : MonoBehaviour
 	void Update() {
 		if(Input.GetKeyDown (KeyCode.Space)) { // ADDS A JUMP ON SPACEBAR KEYDOWN
 			if (inAir == false) {
-				this.rigidbody.AddForce(new Vector3(0, jump, 0));
+				this.GetComponent<Rigidbody>().AddForce(new Vector3(0, jump, 0));
 			}
 		}
-		if(this.rigidbody.position.y > playerYPos) { // CHECKS IF PLAYER IS IN THE AIR
+		if(this.GetComponent<Rigidbody>().position.y > playerYPos) { // CHECKS IF PLAYER IS IN THE AIR
 			inAir = true;	
-			Debug.Log(this.rigidbody.position.y);
+			Debug.Log(this.GetComponent<Rigidbody>().position.y);
 		}
-		if (this.rigidbody.position.y <= playerYPos) 
+		if (this.GetComponent<Rigidbody>().position.y <= playerYPos) 
 			inAir = false;
 	}
 
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 
-		rigidbody.AddForce (movement * speed * Time.deltaTime);
+		GetComponent<Rigidbody>().AddForce (movement * speed * Time.deltaTime);
 	}
 
 	void OnTriggerEnter(Collider other)
